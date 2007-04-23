@@ -1,0 +1,412 @@
+29 Nov 2003
+
+- Revived skij on Linux
+- got patblocks and some other stuff working
+- started on Behave2
+
+
+4 Dec
+
+Patblocks works, mostly. I want to see if I can get it on a web page.
+
+But, even default skijlet.html is broken -- won't run under MozillaFirebird.
+
+need to run it using javaish applet tool, whatever that is called.
+
+This does something:
+/usr/java/j2sdk1.4.2_02/bin/appletviewer file:/home/mt/java/com/ibm/jikes/skij/doc/skijlet.html
+
+Oh, the jar file isn't there. Well, fuck me.
+
+next step: find my non-released skij files which probably include the creation script.
+
+Found it, but it's a windows .bat file...oh well!
+
+Alright, sort of got a jar file built and working
+   jar cvf0 skij.jar com/ibm
+   
+And it actually loads and starts up, but then gets a security exception...sigh.
+
+This is better...
+  appletviewer  file:///home/mt/Projects/skij/webtest/skijlet.html
+
+Alright, there's a security exception, but why? where?
+  invoking isInstance on class com.ibm.jikes.Symbol...with args java.awt.TextArea...access denied.
+
+Now, isInstance is a public method, Symbol is a public class...maybe everything is fucked? It tries
+to open up access and can't?  No, doesn't seem so, that gets a different error message (there are
+a lot of these on the console, btw, but that doesn't seem to be the source of the problem).
+
+Running the applet from skij itself:
+  (run-applet 'com.ibm.jikes.skij.Skijlet "file:///home/mt/Projects/skij/webtest/skijlet.html" 500 300 '())
+works fine, which doesn't prove anything..
+
+More complete puzzlement: some of the demo applets fail in firebird but work in appletviewer...argh.
+   /usr/java/j2sdk1.4.2_02/demo/applets/ArcTest/example1.html
+Actually this works OK in firebird when loaded from the file, but fails on the version from Sun's
+website:
+   http://java.sun.com/applets/jdk/1.4/demo/applets/ArcTest/example1.html
+
+----
+Note: there is code in Dynvoke and possibly elsewhere that is only there for 1.1. compat, may
+no longer be necessary.
+----
+
+Damn, JScheme runs in an applet...nother reason to convert I guess.
+
+---
+
+FWIW, same errors seem to happen on Windows. 
+
+----------
+
+23 Oct 2004
+
+Yay, I made it work. You have to sign the applet!  Here's the magic...
+
+
+/usr/java/j2sdk1.4.2_02/bin/keytool -genkey -alias MTravers -keypass JustAnotherPassword
+jarsigner /home/mt/Projects/skij/webtest/skij.jar  MTravers
+
+the keystore password is KeyStorePass, for reference.
+
+So this makes something that WORKS in the browser, but not in appletviewer. Oh well.
+
+Weirdly, graph-inspect works from the browser!  Except that the context menu doesn't...sigh.
+
+-------
+
+24 Oct
+
+I suppose next steps would be
+- make a jar that boots patblocks
+- make an applet that runs patblocks
+- fix refresh problem
+
+To compile skij (at this late date):
+> javac *.java util/*.java misc/*.java
+gets a lot of erros though...
+
+---
+
+31 Oct 
+
+- Add .scm files to jar (but it won't work since they load files explicitly)
+cd webtest
+jar -uvf skij.jar ../apps/patblocks.scm ../nlib/sprites.scm ../nlib/ndefstruct.scm 
+
+Nope, because (load-resources) references relative to the com.ibm.jikes.Scheme class....sigh.
+
+So:
+- copy files to ~/java hierarchy...nlib and apps
+- replace load files with load-resource
+
+> cd ~/java
+> jar -uvf ~/Projects/skij/webtest/skij.jar com/ibm/jikes/skij/nlib  com/ibm/jikes/skij/apps
+
+Hey, this works, kind of. Start up the applet and
+(load-resources "apps/patblocks.scm")
+
+BUT, it gets an error on "font render context", argh.
+Look at sprites, if you do this beforehand it seems OK:
+	(set! *frc*
+	      (invoke (invoke (car (all-windows)) 'getGraphics) 'getFontRenderContext))
+
+OK, never mind that, let's see how we can make a jar that boots it up automagically...
+HEY, it's easy, just put a <param> tag in!  Wacka-cool.  
+
+BUT, it doesn't make the thing in the applet window...
+
+------------
+
+OK, I think  you can get ahold of the applet window and make the patblock thingy in there...
+with some hackery.
+
+HEY, it works...except for the (expected) refresh problems.
+
+OK, now the todo list:
+- fix refresh problem
+- write some scattered doc
+- put on website and "publish" somewhere.
+- fixes/additions: get rid of penta and octa, color options, etc.  reset button.  Scaling!
+ 
+-- BUG: reload produces an error.
+
+---------------------------------
+
+Ugh -- I think the Emacs jar-editing featuer, while neat, is buggy. FUCK.
+
+And I can't seem to get the refresh right, even after adding a listener that fixes it in non-applet mode.
+
+----
+
+OK, hack of adding a addWindowListener SORT OF fixes refresh -- it will refresh on focus, but not
+if a new area of the window is exposed....piss.
+
+
+-----
+Well, by using DBPanel class I got something that would repaint, but the double-buffering is broke...
+
+WARNING, the versions in the directory are mucked up, look at the ones in jar for a backup reference.
+
+
+----
+
+
+Yes the DBPanel does the right thing...
+
+NO, wait, it needs to override the update method!  Doing that makes double-buffering
+work! YahoO!
+
+Well, still a problem, the buttons have disappeared...ok, fixed that. Hey, I'm done.
+
+--------------------------------------
+
+Fuck, applet still broke. Well, here is the build procedure in a nutshell
+
+cd ~/java
+# no longer necessary, or so I hope
+# cp -r ~/Projects/skij/apps com/ibm/jikes/skij
+# cp -r ~/Projects/skij/nlib com/ibm/jikes/skij
+jar cf0 ~/Projects/skij/webtest/skij.jar com/ibm
+# more compact version
+jar cf0 ~/Projects/skij/webtest/skij.jar com/ibm/jikes/skij/*.class com/ibm/jikes/skij/*.class com/ibm/jikes/skij/misc/*.class com/ibm/jikes/skij/util/*.class com/ibm/jikes/skij/lib/*.scm com/ibm/jikes/skij/nlib/*.scm com/ibm/jikes/skij/apps/*.scm
+jarsigner /home/mt/Projects/skij/webtest/skij.jar  MTravers2
+KeyStorePass
+JustAnotherPassword
+
+# publish and perish
+scp /home/mt/Projects/skij/webtest/skij.jar u35705373@www.hyperphor.com:patblocks/skij.jar
+monetary
+cp /home/mt/Projects/skij/webtest/skij.jar /var/www/html/patblocks
+-------------------------------------------
+
+No, I fixed the applet, cool, now I'm done!  Wait, no, the way I set up the window fails
+except on the very first java window in the system...bad.
+
+OK, fixed that, NOW I'm done...sort of.
+
+---------------------
+
+Bug list:
+- loads of usability problems
+- trim gunk out of jar file
+- hide IBM copyrights?
+
+Enhanmcements:
+- save/restore pattern
+- different palettes
+- turn groups into palette objects (maybe make palettes scaled while at it)
+- scaling, custom colors, etc.
+
+
+----------------------
+
+To test with aserve
+(require 'aserve)
+:pa net.aserve
+(start :port 8002)
+(debug-on :info :xmit)
+(publish-directory :prefix "/" :destination "/home/mt/Projects/skij/webtest/") 
+
+---------------
+
+Oh fucking finally I solved the mystery of the missing text buttons...now I am complete.
+
+Here's a place to publicize:
+http://mathforum.org/mathtools/
+
+BUT...I really should put abstraction in, it's fundamental to my belief system...
+
+----------------
+
+Alright, so working on abstraction, which turns out to be a PAIN.  But; I got scaling of 
+groups to work, and generated palettes, so there's the infrastructure.
+
+Todo: 
+- group to source (requires new kind of source)
+
+--------------------------------
+
+Weird thing someone noticed: this here
+  (define weird (new 'java.awt.Font "Dialog" 0 (float 18) #f))
+works OK on linux and Windows (and Safari on the Mac) but fails on Mac/Firefox.  The weird thing
+is, it OUGHT to fail everywhere, there is no such constructor!  So how is it working?
+
+2 Dec
+
+Well, turns out the applet always tries to load the .scm libraries from their compiled .class 
+forms. If they aren't in the jar, it goes to the server. So there were a dozen or so round-trips
+to the server before the applet would run. I turned off this feature; could put it back in if
+I go through the trouble of compiling the .scm files again.
+
+And I fixed the constructor problem by forcing it to go throught he Font(Map) constructor...
+the underlying bug in Skij is still there, sigh.
+
+---------------------------------------
+
+OK, work on saving patterns.
+
+Through great effort and Ken's help, got a Java POST working, and starting to learn PHP.
+
+So plan is:
+- optional Save button (done)
+- brings up a dialog (in Java/skij) (partly done)
+- does a POST (done)
+- a PHP script stores the info in a directory somehow (done, except for filename uniquization and security)
+- a dynamic web page displays the creations 
+- some way to start the applet with the saved pattern (done)
+
+hm, that's a lot of plumbing.
+
+Other points:
+- the save format needs to support other shapes, colors etc that might get defined later
+- would be nice to make a thumbnail of the pattern?
+- dump-form should include palette for later flexibility
+
+
+Subplan for PHP side:
+- the post recipient form writes a file that sets some variables and 
+  includes() some boilerplate to make a preloaded applet.
+- it also appends an entry to an index file which includes a hyperlink to the first file
+- which is included() in the master library file.
+
+OK, that sounds eminiently doable.
+
+
+
+SCRs!!!!!
+
+- record date in directory (or better, make a flexible format that can be dated-up).
+  sort of done; there's a version now and the date is in the directory....
+
+- right-click probs for group sprites has probs
+  - shows up in wrong place (FIXED)
+  - color is meaningless (FIXED)
+  - scale will displace in weird ways
+
+----------------------- ^^^ have to fix for release
+
+
+- randomize-palette is neat, should hook it up to something.
+
+- really need to fix scaling problems -- way too slow
+
+- loads of usability problems
+  Big one: need to figure out the right-mouse/rotate/menu issue...sigh.
+  semi-fixed.  Should use keys!!!
+
+- startup problems with cached poly? and refresh 
+  still a problem, esp. when coming from directory for some reason.
+  tried a fix (calling manager-repaint), have to make new jar to try it...
+  fixed i think
+
+
+- possible line-length limit wills screw up big patterns?
+  test it (increased to 100K, still may be a problem).
+
+- Save pattern button (in dialog) gets error and dialog stays around
+  Error handling event java.awt.event.ActionEvent[ACTION_PERFORMED,cmd=Save Pattern,when=1103598022791,modifiers=] on button0: com.ibm.jikes.skij.SchemeException: Error invoking method getInputStream on sun.plugin.net.protocol.http.HttpURLConnection:http://www.hyperphor.com/patblocks/savepat.php with args (): java.io.FileNotFoundException: http://www.hyperphor.com/patblocks/savepat.php
+  OK, problem is we have wrong URL, but needs better error handler.
+  may be done
+
+- clear all button.
+- seems to snap-to group palette items (though I fixed that)
+
+- right button is now context; makes rotating a PAIN
+  semi-fixed with numbers.
+
+- need a way to delete group (or anything) from palette
+
+- posting URL is localhost...should probably get it through webpage.
+  Fixed I think, not tested though.
+
+- should have a more compact storage format (wouldn't be hard really)
+
+
+- dialog layout funky
+  partly fixed; still could be better
+
+-----------------------------------------------------------------
+
+
+
+FIXED
+
+- php is not directory-relocatable
+  check, may be ok.
+
+- get rid of "file" refs in URLs and elsewhere.  Make sure no .. tricks work
+- update doc before release
+
+- prints save log on console
+  FIXED I think.
+
+- please get rid of the damn jaggies in the square....
+  DONE
+
+- context menu should have clone, delete commands
+
+- palette issues
+  - need to record palette, to support alternative geometries
+    done now
+
+----------------------------
+
+Release problems:
+
+- somehow old version of patblocks.html comes up sometimes, I have no idea...
+- link to Hyperphor home
+
+Publish to hyperphor command (NOTE: this needs to be modified to preserve other people's patterns)
+  scp -r /var/www/html/patblocks u35705373@www.hyperphor.com:
+  scp /var/www/html/patblocks/* u35705373@www.hyperphor.com:/patblocks
+
+---------------------------
+
+FUCK, saver is not working on hyperphor. Possibly two problems:
+
+- on windows, trys (sometimes) to save to "localhost", so *save-url* is not getting set properly (gets error in dialog box)
+- even when *save-url* seems OK and save appears to work, it doesn't show up on server (this happens from Linux box).
+
+- note: java console on windows does very weird things, like apparently reloading patblocks.scm over and over...
+
+PHUCK!
+
+OK, some analysis:
+- the POST seems to go normally, it's logged on the server (hyperphor) and sends what looks like a good reply.
+
+I'm suspecting the file-write stuff just fails silently due to some security thing.
+
+
+OK, yay, I fixed it, problem was a bad fixed-pathname in a PHP file PLUS the fact that it failed silently...
+Ken sez...user_error() or some other trick for making errors show up.
+
+-----------------------------------------
+
+Todos:
+
+- more block sets
+  part DONE
+- better support for block sets in stored format...losing scales, head-snap, etc.
+  FIXED
+- links to block sets from homepage
+  DONE
+- security...it's really nasty.
+- some better way to rotate...like holding down a key...
+  DONE
+
+----------------
+
+Later todos:
+
+- Flip (DONE)
+  needs to work with composites!
+- sent to back/front
+- take into account closing line seg of poly for computing scales
+- show scales in their meaningful form ("sqrt(2)")
+- reorg web pages
+- way to make a new shape (ie, group and turn it into a single poly)
+  requires some actual computation!
+- stick in golden/powerpolys
+- update golden to have more explanation and an immediately-obvious example.

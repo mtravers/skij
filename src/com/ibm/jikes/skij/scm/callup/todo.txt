@@ -1,0 +1,62 @@
+Links to do intranet search on name:
+http://w3search.torolab.ibm.com/alt_search.mod?q=%22schloss+bob%22+OR+%22bob+schloss%22%0D%0A&do=&ad=-1&mh=100&ft=f&mo=fl&ix=c
+
+- Watson database is not updated very well; is there some way to get
+at Austin's?
+
+- popup menus are sort of iffy even aside from Swing problems
+
+- interface: separate out user input, output, and header text
+
+- refresh is broken in Swing under Netscape
+   kludge fix:
+   (in-own-process (loop (sleep 1) (invoke <frame> 'repaint))) 
+
+- for applet
+-- package in JApplet
+-- some sort of web interface (personal URLs and callup pages)
+--
+
+- server has to be same as web server (so either: 
+   -- web server on gumby
+   -- run call server on w3.
+
+- need a user interface for entering initial (and subsequent) names
+-   and handling of multiple or missing names
+     DONE, to first cut
+- would be nice if name appeared first, before getting all superiors...
+     working on it...mostly DONE
+
+- mystery Swing errors (from repaint)
+
+; make updates happen in separate thread (add synchronizers, see node doc)
+    DONE
+; clicks on open/close bring up menu; shouldn't
+; click on non-item gets error
+; item display problem
+
+; better error handling
+;  command interface
+;  display more fields, ie, mail address, web page
+; might be nice if you didn't HAVE to go all the way up to Gerstner
+; take manager field to indicate whether their are subordinates?
+; cache subordinate info
+; change to Swing tree widget, eventually
+; interesting: "department" is not the same as "has same manager".
+;   ok, cow-orkers of a manager will only give you mgr plus subordinates who aren't managers
+
+; show web-page, make clickable. Also email and/or phone
+
+; there is some way to get department names, and they ARE useful...let's figure it out
+;  OK here it is: -T adds the "pseudo-column" department title (only when used with -c)
+;    HOWEVER, it fucks up with managers! weird, weird, weird
+; doing Mark Lucente included some sibling departments for reasons unknown
+; why does it close old entries when adding new ones?
+; better icons; indicate managers even if subordinates aren't included
+; redisplay must be incremental
+;   DONE, may cause breakage
+;and manager icons should indicate if they are being worked on...
+
+
+- needs to handle multiple returned entries (or failed name lookup) better
+   DONE

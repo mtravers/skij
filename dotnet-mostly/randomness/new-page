@@ -1,0 +1,46 @@
+Skij
+
+Skij is (or was) a scheme interpreter in Java, designed chiefly for
+easy scripting, debugging, and exploratory programming in the Java
+environment.  
+
+Skij was developed by me at IBM Watson Labs, which released it under
+their alphaWorks program. Unfortunately they have now "retired" it, so
+it is no longer available. I've asked IBM several times if they will
+release it under an open source license, but to no avail (basically
+it's too small a thing for them to bother with the paperwork). If
+you'd like to get Skij released in some form, please write to John
+Field at IBM and tell him so.  Or you could write to alphaWorks and
+ask them to unretire it.
+
+Skij is best described in this article I wrote for Dr. Dobbs Journal.  The
+cursory html documentation for skij is available here.
+
+Alternatives to Skij
+
+There are quite a few other Scheme-in-Java systems out there,
+including JScheme, Kawa, and sics.  All of these have reasonable
+licenses, unlike Skij.  Although they all have their merits, none are
+quite as good as skij at the main thing skij was designed for, which
+is making Java as close to an interactive dynamic environment as
+possible.
+
+JScheme is probably the closest to Skij in concept -- a simple
+interpreter, with the ability to access Java functionality from
+Scheme. In fact, some of the undocumented innards of JScheme are, um,
+highly compatible with Skij. Unfortunately JScheme is not quite as convenient
+to use as skij, and there appear to be some problems with its method
+dispatching facility (according to reports I've received from people
+trying to port skij code to JScheme).
+
+Kawa compiles Scheme to bytecodes so is much faster than skij or
+JScheme, at the cost of being a larger and more complex system.
+
+SISC is a newer Scheme interpreter that adheres much more closely to
+the full Scheme standard than any of the other implementations I've
+seen, and even implements a full call-with-current-continuation.  It
+has fairly good performance to boot.  Unfortunately it's interface to
+Java classes is somewhat clunky to use.
+
+
+

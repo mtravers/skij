@@ -1,0 +1,34 @@
+Dave Shields, shields@watson.ibm.com
+
+Dear Dave,
+
+Hi, it's been awhile. I hope you and Jikes and the rest of Watson are
+doing well.
+
+I'm writing to try to revive some old software and old licensing
+issues.  There's a number of projects out there that want to use Skij,
+the Java-based Scheme implementation I developed while at
+Watson. However, the licensing imposed by alphaWorks has been a
+barrier. I tried a long time ago to get it moved to an open source
+license, but there wasn't enough interest from IBM. Since then, of
+course, IBM has embraced Linux and open source, so the rules might
+have changed.
+
+I'm wondering who I should talk to try again, and thought I'd write to
+you since I remember you were in the forefront of this kind of thing
+at IBM.  If you know of anybody, I'd really appreciate it if you could
+send me some contact info, or if you like you can forward this
+message.
+
+Anyway, thanks for any help,
+
+Mike Travers
+mt@alum.mit.edu
+415-378-7033
+
+PS: I just noticed that Skij has been "retired" from the alphaWorks
+website and is no longer available at all.  This must have happened
+fairly recently.  I'll interpret this to mean IBM has no further
+interest in it, so it might as well be made available somehow.
+
+

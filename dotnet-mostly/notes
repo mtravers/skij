@@ -1,0 +1,39 @@
+Start me up with:
+
+
+
+
+
+
+Laptop/ics startup:
+E:/mdl/isentris/support/jre/bin/java -classpath d:/java com.ibm.jikes.skij.Scheme 
+
+
+Newer:
+E:/mdl/MDLClient1.1/support/jre/bin/java -cp "e:/java;E:/mdl/MDLClient1.1/lib/log4j.jar;E:/mdl/MDLClient1.1/lib/IsentrisClient.jar;E:/mdl/MDLClient1.1/lib/IsentrisExamples.jar;E:/mdl/MDLClient1.1/lib/csinline.jar;E:/mdl/MDLClient1.1/lib/classes12.zip;E:/mdl/MDLClient1.1/lib/xalan.jar;E:/mdl/MDLClient1.1/lib/xml-apis.jar;E:/mdl/MDLClient1.1/lib/xercesImpl.jar;E:/mdl/MDLClient1.1/lib/xmlParserAPIs.jar" -Disentris.home="e:\mdl\isentris" -Djava.security.policy="e:\mdl\isentris\system\policySecurity\policy" com.ibm.jikes.skij.Scheme 
+
+
+
+Add these:
+java.security.policy
+isentris.home E:\mdl\isentris
+
+
+
+
+
+
+
+Changed files:
+GenericSwingCallback.java
+
+Bugs:
+(inspect) on a non-public object won't show all fields due to some
+accessibility problem. Oh I know, it's just that it uses getMethods
+and should be using a series of getDeclaredMethods like Dynvoke does
+now. Yarg.
+
+(invoke <object> 'GetType) won't work, for some bizarre reason. (Test other
+methods of Object). But, you can do the equivalent like this:
+(invoke (invoke <object> 'getClass) 'ToType)
+

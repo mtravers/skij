@@ -1,0 +1,202 @@
+
+
+S -> x a b b x a
+replace
+M -> x a
+S -> M b b M
+continue
+S -> M b b M a b x a b
+replace
+N -> a b
+S -> M b b M N x N
+continue
+S -> M b b M N x N b b
+replace
+O -> b b
+S -> M O M N x N O
+continue
+M -> x a
+N -> a b
+O -> b b
+S -> M O M N x N O b x a
+replace
+S -> M O M N x N O b M a a b
+replace
+S -> M O M N x N O b M a N
+continue
+S -> M O M N x N O b M a N b b
+replace
+S -> M O M N x N O b M a N O
+replace
+P -> N O
+S -> M O M N x P b M a P x a
+replace
+S -> M O M N x P b M a P M
+continue
+S -> M O M N x P b M a P M a
+replace
+Q -> M a
+S -> M O M N x P b Q P Q 
+continue
+S -> M O M N x P b Q P Q a b
+replace
+S -> M O M N x P b Q P Q N
+continue
+S -> M O M N x P b Q P Q N x
+replace
+R -> N x
+S -> M O M R P b Q P Q R
+assemble
+M -> x a
+N -> a b
+O -> b b
+P -> N O
+Q -> M a
+R -> N x
+S -> M O M R P b Q P Q R
+continue...
+S -> M O M R P b Q P Q R a
+
+
+xabbxaabxabbbbxaabbbxaaabxabbx
+
+
+It can't do it!
+
+What should it look like:
+
+S -> P
+S -> PS
+P -> x A B
+A -> a
+A -> a A
+B -> b
+B -> b B
+
+Pretty simple...but sequiteur does neither recursion nor ORs!
+
+
+
+Rule                                              Expansion
+A100 --> A105 A103 A103 A108 A109 A115 A107 A104 A105 A108 A110 A109 A102 A106 A102 A111 A111 A116 A112 A114 A114 A112 A115 A116 b A105 A181 A118 A143 A119 A131 A140 A123 A127 A122 A126 A107 A133 A149 A118 A128 A154 A126 A136 A175 A127 A119 A130 A129 A129 A130 A131 A113 A135 A139 A117 A142 A133 A161 A118 A148 A135 A147 A170 A135 A145 A136 A134 A138 A132 A138 A163 A206 A123 A141 A107 A140 A141 A142 A144 A138 A143 A107 A150 A137 A144 A145 A162 A146 A155 A178 A148 A146 A156 A151 A149 A192 A125 A150 A160 A167 A152 A145 A159 A154 A155 A130 A156 A157 A151 A129 A165 A146 A130 A159 A177 A140 A128 A164 A123 A151 A132 A182 A160 A161 A166 A162 A138 A183 A133 A145 A107 A154 A146 A173 A138 A185 A137 A163 A169 A198 A172 A125 A171 A165 A166 A187 A168 A167 A129 A138 A168 A169 A136 A170 A157 A143 A171 A172 A117 A205 A138 A173 A166 A138 A162 A171 A171 A141 A134 A174 A158 A119 A174 A176 A175 A176 A159 A171 A179 A171 A118 A120 A131 A136 A144 A117 A177 A180 A146 A169 A169 A178 A179 A180 A137 A107 A181 A193 A184 A182 A117 A169 A181 A138 A201 A188 A203 A183 A134 A131 A186 A118 A171 A161 A117 A184 A134 A147 A127 A157 A131 A162 A145 A196 A171 A136 A147 A189 A117 A162 A209 A121 A102 A190 A186 A187 A195 A118 A118 A154 A187 A188 A129 A172 A171 A153 A194 A141 A145 A130 A189 A169 A204 A190 A157 A191 A107 A192 A161 A199 A185 A193 A159 A183 A130 A194 A172 A169 A195 A157 A193 a A197 A107 A119 A196 A134 A200 A147 A197 A134 A124 A120 A147 A123 A195 A193 A124 A162 A134 A164 A187 A137 A139 A198 A145 A123 A199 A193 A154 A134 A171 A117 A144 A159 A119 A119 A200 A131 A122 A169 A201 A207 A162 A191 A125 A169 A119 A202 A161 A125 A136 A118 A203 A204 A157 A157 A121 A118 A146 A205 A202 A191 A206 A153 A123 A170 A187 A123 A207 A208 A137 A208 a A154 A137 A171 A209 A158 A193 A171 A137 A147 A138 A152 A112 
+A101 --> b b                                      bb
+A102 --> x a                                      xa
+A103 --> A104 A107                                bbbbbbxa
+A104 --> A101 A101                                bbbb
+A105 --> A102 a                                   xaa
+A106 --> A104 b                                   bbbbb
+A107 --> A101 A102                                bbxa
+A108 --> a A106 A105                              abbbbbxaa
+A109 --> A106 b                                   bbbbbb
+A110 --> A104 A102                                bbbbxa
+A111 --> A110 a                                   bbbbxaa
+A112 --> A101 b                                   bbb
+A113 --> A105 a                                   xaaa
+A114 --> b A113                                   bxaaa
+A115 --> A105 A107                                xaabbxa
+A116 --> A112 A113                                bbbxaaa
+A117 --> b A102                                   bxa
+A118 --> A117 a                                   bxaa
+A119 --> A112 A117                                bbbbxa
+A120 --> A107 a                                   bbxaa
+A121 --> A120 A112                                bbxaabbb
+A122 --> A112 A102                                bbbxa
+A123 --> A112 A122                                bbbbbbxa
+A124 --> A120 a                                   bbxaaa
+A125 --> A112 A107                                bbbbbxa
+A126 --> a A118                                   abxaa
+A127 --> A123 A117                                bbbbbbxabxa
+A128 --> a A119                                   abbbbxa
+A129 --> a A117                                   abxa
+A130 --> A128 a                                   abbbbxaa
+A131 --> A124 A112                                bbxaaabbb
+A132 --> A123 A134                                bbbbbbxaaa
+A133 --> A121 A120                                bbxaabbbbbxaa
+A134 --> a a                                      aa
+A135 --> A137 A129                                bbbbxaaabxa
+A136 --> A122 A123                                bbbxabbbbbbxa
+A137 --> A119 a                                   bbbbxaa
+A138 --> A137 a                                   bbbbxaaa
+A139 --> A122 A107                                bbbxabbxa
+A140 --> A121 A105                                bbxaabbbxaa
+A141 --> A130 A119                                abbbbxaabbbbxa
+A142 --> A132 A132                                bbbbbbxaaabbbbbbxaaa
+A143 --> A121 A122                                bbxaabbbbbbxa
+A144 --> A118 A137                                bxaabbbbxaa
+A145 --> a A122                                   abbbxa
+A146 --> A122 a                                   bbbxaa
+A147 --> A118 a                                   bxaaa
+A148 --> A152 A134                                bbbxaabbbbbxaaa
+A149 --> A107 A124                                bbxabbxaaa
+A150 --> A123 A137                                bbbbbbxabbbbxaa
+A151 --> a A120                                   abbxaa
+A152 --> A146 A125                                bbbxaabbbbbxa
+A153 --> A125 a                                   bbbbbxaa
+A154 --> A125 A125                                bbbbbxabbbbbxa
+A155 --> A147 A146                                bxaaabbbxaa
+A156 --> A157 A145                                abbbbbbxaabbbxa
+A157 --> a A123                                   abbbbbbxa
+A158 --> A107 A123                                bbxabbbbbbxa
+A159 --> A153 a                                   bbbbbxaaa
+A160 --> A124 A118                                bbxaaabxaa
+A161 --> A129 A134                                abxaaa
+A162 --> A117 A123                                bxabbbbbbxa
+A163 --> A137 A132                                bbbbxaabbbbbbxaaa
+A164 --> A122 A119                                bbbxabbbbxa
+A165 --> A158 A134                                bbxabbbbbbxaaa
+A166 --> A153 A122                                bbbbbxaabbbxa
+A167 --> A158 A151                                bbxabbbbbbxaabbxaa
+A168 --> A120 A121                                bbxaabbxaabbb
+A169 --> A146 a                                   bbbxaaa
+A170 --> A131 A107                                bbxaaabbbbbxa
+A171 --> A123 a                                   bbbbbbxaa
+A172 --> A145 A134                                abbbxaaa
+A173 --> A121 A147                                bbxaabbbbxaaa
+A174 --> A107 A107                                bbxabbxa
+A175 --> A129 A125 A107                           abxabbbbbxabbxa
+A176 --> A134 A162                                aabxabbbbbbxa
+A177 --> A159 A118                                bbbbbxaaabxaa
+A178 --> A146 A119                                bbbxaabbbbxa
+A179 --> a A153                                   abbbbbxaa
+A180 --> A145 A191                                abbbxaabbbbbbxaaa
+A181 --> A119 A118                                bbbbxabxaa
+A182 --> A153 A120                                bbbbbxaabbxaa
+A183 --> A125 A119                                bbbbbxabbbbxa
+A184 --> A119 A107                                bbbbxabbxa
+A185 --> A123 A119                                bbbbbbxabbbbxa
+A186 --> A146 A122                                bbbxaabbbxa
+A187 --> A134 A137                                aabbbbxaa
+A188 --> A125 A118                                bbbbbxabxaa
+A189 --> A117 A138                                bxabbbbxaaa
+A190 --> A119 A117                                bbbbxabxa
+A191 --> A157 A134                                abbbbbbxaaa
+A192 --> A146 A118 A153                           bbbxaabxaabbbbbxaa
+A193 --> a A107                                   abbxa
+A194 --> A171 A145                                bbbbbbxaaabbbxa
+A195 --> A120 A120                                bbxaabbxaa
+A196 --> A153 A119                                bbbbbxaabbbbxa
+A197 --> A125 A123                                bbbbbxabbbbbbxa
+A198 --> A159 A164                                bbbbbxaaabbbxabbbbxa
+A199 --> A169 A153                                bbbxaaabbbbbxaa
+A200 --> A146 A202                                bbbxaabbbbbbxaaabbbbbbxa
+A201 --> A139 a                                   bbbxabbxaa
+A202 --> A171 A157                                bbbbbbxaaabbbbbbxa
+A203 --> A178 A134                                bbbxaabbbbxaaa
+A204 --> A147 A107                                bxaaabbxa
+A205 --> A107 A169                                bbxabbbxaaa
+A206 --> A139 A123                                bbbxabbxabbbbbbxa
+A207 --> A123 A153                                bbbbbbxabbbbbxaa
+A208 --> A138 A171                                bbbbxaaabbbbbbxaa
+A209 --> A185 A134                                bbbbbbxabbbbxaaa
+357 symbols in rule 0, 702 symbols in total       
+
+
+Sucks, pure and simple
+
+Let me try!
+
+x a b b x a a b x a b b b b x a a b b b x a a a b x a b b x
+
+S -> a b b
+S -> a a b
+S -> a b b b b

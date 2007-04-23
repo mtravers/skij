@@ -1,0 +1,9 @@
+
+
+import System;
+var x = System.Reflection.Assembly.LoadFrom("C:/mt/projects/skij/skijsharp/skij/bin/debug/skij.dll");
+Console.WriteLine(x + " loaded");
+import MDL;
+var t = MDL.FUtility.FindType("com.ibm.jikes.skij.Scheme");
+var m = t.GetMethod("startConsole");
+m.Invoke(null, []);

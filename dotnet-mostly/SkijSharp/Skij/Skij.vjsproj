@@ -1,0 +1,442 @@
+<VisualStudioProject>
+    <VISUALJSHARP
+        ProjectType = "Local"
+        ProductVersion = "7.0.9466"
+        SchemaVersion = "1.0"
+        ProjectGuid = "{D61378E9-2C82-4927-82D5-050721EC13FD}"
+    >
+        <Build>
+            <Settings
+                AssemblyKeyContainerName = ""
+                AssemblyName = "Skij"
+                AssemblyOriginatorKeyFile = ""
+                DefaultClientScript = "JScript"
+                DefaultHTMLPageLayout = "Grid"
+                DefaultTargetSchema = "IE50"
+                OutputType = "Library"
+                RootNamespace = "Skij"
+                StartupObject = ""
+            >
+                <Config
+                    Name = "Debug"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "DEBUG;TRACE"
+                    DebugSymbols = "true"
+                    Optimize = "false"
+                    OutputPath = "bin\Debug\"
+                    RegisterForComInterop = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                    AdditionalOptions = ""
+                />
+                <Config
+                    Name = "Release"
+                    BaseAddress = "285212672"
+                    ConfigurationOverrideFile = ""
+                    DefineConstants = "TRACE"
+                    DebugSymbols = "false"
+                    Optimize = "true"
+                    OutputPath = "bin\Release\"
+                    RegisterForComInterop = "false"
+                    TreatWarningsAsErrors = "false"
+                    WarningLevel = "4"
+                    AdditionalOptions = ""
+                />
+            </Settings>
+            <References/>
+        </Build>
+        <Files>
+            <Include>
+                <File
+                    RelPath = "CompoundProcedure.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Cons.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Continuation.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ContinuationException.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Environment.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "EOFObject.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Evaluator.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "InputPort.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListenerConsole.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ListenerWindow.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Macro.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Nil.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "OutputPort.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "PrimProcedure.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Procedure.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "ProcEnvironment.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Scheme.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SchemeException.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SchemeListener.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SchemeReader.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SchemeTokenizer.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SchemeWriter.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SkijTest.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Symbol.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "TopEnvironment.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "lib\amb.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\anaphoric.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\applet.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\apropos.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\array.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\boole.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\chars.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\classloader.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\control.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\defstruct.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\delay.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\describe.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\dialogs.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\dynamic.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\encapsulate.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\files.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\graph.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\hashtable.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\init.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\inspect.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\interrupt.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\io.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\java.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\javascript.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\jmenu.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\let.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\listener.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\lists.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\macro.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\memoize.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\menu.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\numeric.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\pp.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\proc.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\quasi.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\random.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\rsh.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\runtime.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\server.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\setf.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\string.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\swing.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\symbol.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\tcp.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\test.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\textrace.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\thread.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\time.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\trace.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\tree.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\vector.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\window.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "lib\write.scm"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "misc\Adaptor.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\DBPanel.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\GenericCallback.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\GraphPanel.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\Hashpatch.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\Kludge.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\ListenerTextArea.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "misc\Panel.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "util\Dynvoke.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "util\Tracer.java"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+            </Include>
+        </Files>
+    </VISUALJSHARP>
+</VisualStudioProject>
+

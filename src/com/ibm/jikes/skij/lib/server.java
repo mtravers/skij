@@ -1,0 +1,11 @@
+package com.ibm.jikes.skij.lib;
+class server extends SchemeLibrary {
+  static {
+    evalStringSafe("(define (make-server port handler) (define server-socket (new 'java.net.ServerSocket port)) (in-own-thread (let loop () (define socket (invoke server-socket 'accept)) (in-own-thread (handler socket)) (loop))))");
+    evalStringSafe("(define (local-host) (invoke-static 'java.net.InetAddress 'getLocalHost))");
+    evalStringSafe("(define (make-eval-server port) (make-server port (lambda (socket) (define in (new 'com.ibm.jikes.skij.InputPort (invoke socket 'getInputStream))) (define form (read in)) (print (string-append '\"EVAL server: \" (to-string form))) (define out (new 'com.ibm.jikes.skij.OutputPort (invoke socket 'getOutputStream))) (define result (eval form)) (print (string-append '\"--> \" (to-string result))) (write result out) (newline out) (invoke socket 'close))))");
+    evalStringSafe("(define (remote-eval host port form) (define socket (new 'java.net.Socket host port)) (define out (new 'com.ibm.jikes.skij.OutputPort (invoke socket 'getOutputStream))) (write form out) (newline out) (define in (new 'com.ibm.jikes.skij.InputPort (invoke socket 'getInputStream))) (read in))");
+    evalStringSafe("(define (simple-client host port argstring) (define socket (new 'java.net.Socket host port)) (define out (new 'com.ibm.jikes.skij.OutputPort (invoke socket 'getOutputStream))) (write argstring out) (newline out) (define in (new 'com.ibm.jikes.skij.InputPort (invoke socket 'getInputStream))) (with-string-output-port (lambda (stringp) (copy-until-eof in stringp))))");
+    evalStringSafe("(define (start-http-service port proc) (make-server port (lambda (socket) (define in (new 'com.ibm.jikes.skij.InputPort (invoke socket 'getInputStream))) (define command-line (read-line in)) (define url-start (+ 1 (invoke command-line 'indexOf 32))) (define url-end (invoke command-line 'indexOf 32 url-start)) (define url (substring command-line url-start url-end)) (define command (substring command-line 0 url-start)) (define headers '()) (let loop ((line (read-line in))) (unless (= 0 (string-length line)) (push line headers) (loop (read-line in)))) (define out (new 'com.ibm.jikes.skij.OutputPort (invoke socket 'getOutputStream))) (proc out command url headers socket))))");
+  }
+}

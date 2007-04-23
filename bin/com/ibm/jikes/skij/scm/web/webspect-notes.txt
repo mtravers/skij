@@ -1,0 +1,228 @@
+- callup-tree: for arrow-queries, the person you are starting from
+should be highlighted in some way (italicized, color)
+
+Tue Jul 21 15:16:29 1998
+- should know about abstract classes and not offer to instantiate them
+- no longer stripping "java.lang." from "Object", etc.
+- http://gumby.watson.ibm.com:2341/webspect/skijproc?proc=html-output
+  yields "%null? is unbound"
+   The problem is in proc-form, but I can't find the source!  The
+    version in pp.scm is OK...mysterious.
+
+
+- patch for problem:
+Please respond to YKTVMV.SMTP2 @ VM
+
+To:	Michael Travers/Watson/IBM@ibmus
+cc:	 
+Subject:	 CPMA question about: call -w mgr=285782
+
+Received: from vorlon.watson.ibm.com (9.2.194.92) by yktvmv.watson.ibm.com
+   (IBM VM SMTP V2R4) with TCP; Tue, 21 Apr 98 09:28:10 EST
+Received: by vorlon.watson.ibm.com (AIX 4.1/UCB 5.64/6/25/96)
+          id AA26362; Tue, 21 Apr 1998 09:28:06 -0400
+Message-Id: <9804211328.AA26362@vorlon.watson.ibm.com>
+To: mtravers@ibmusm11.watson.ibm.com
+Subject: CPMA question about: call -w mgr=285782
+Date: Tue, 21 Apr 98 09:28:06 -0400
+From: Don Icken <icken@vorlon.watson.ibm.com>
+
+Michael, to follow up on my phone call yesterday.  I've looked at your CPMA question
+on the call command not working.  In checking the documentation, the man page for
+call, I see that the examples all used double and single quotes around the arguments
+to -w.  When I tired the command without the quotes, I got the error you reported.
+When I tried both sets of quotes:
+
+call -w "mgr='285782'"
+
+the command worked fine.  If this works for you, please let me know, so that I can
+close the question.  If it doesn't work, please let me know, and I will look into it
+further.  If I don't hear from you, I will close the question next
+week, based on the
+workaround I gave you.
+_____________________________________________________________________________
+Donald Icken  Distributed Workstation Engineering  IBM Watson Research Center
+icken@watson.ibm.com                               PO Box 218        (15-251)
+Voice (914)945-2459 FAX 945-4011 (T/L 862)         Yorktown Heights, NY 10598
+
+         "Don't become roadkill on the Information Superhighway!"
+
+
+
+
+
+
+- need a page of interesting objects:
+
+-- *client-site* (which should be in header as well)
+-- all commands
+-- log in some form
+--    
+  
+
+- callup-tree goes to constructor page, but it would make more sense
+to go class inspector, but I don't think you can do that withought
+forcing the class to load, so we might need a new command.
+
+- IE doesn't show page until it's all there, so callup sucks a bit.
+
+- add a "running since..." on home page.
+
+- log still gets backed up...locking problems.
+
+- callup-tree: subdudes come up in inverse alpha order, sort of ugly
+      FIXED, but slow
+  also, old people are at the bottom. Probably should be sorted.
+   also, "waiting" message should echo the user's command, so they
+   have some clue they clicked in the right place.  "Done" message
+   can say "results are in <b>bold</b>.
+  DONE, mostly
+
+- explain that things are cumulative but page can be reset.
+
+- dealing with lists: need both finer (car/cdr access) and "coarser"
+  list-structure access.  (can't nest links, so use parens as
+hotspots).
+
+- no way to set slots!  Whoops. 
+
+- use format in SLIB (might be some work)
+
+- fry:
+-- "create an object" page
+--- new button is confusing
+--- how about simple option for zero-arg case.
+      me: no, too special-case, but should be some explanation of the
+     two-step process.
+--- would be nice to default lookup to java.lang
+
+-- what about a single hierarchy of all classes
+-- quotes are confusing...
+
+-- results page for naming needs a header for inspect data
+
+- how about a built-in known PrintWriter object, that outputs to the
+HTML results page.
+
+- gee, wouldn't it be nice if html-output would quote <, &, > chars,
+etc? But too slow.
+
+-For release
+-- update skij pages with newest release
+-- more interesting classes on gumby CLASSPATH (XML, com.ibm, whatever)
+
+- very long names screw up display. Let's have a trimmer.
+  DONE
+
+- inspect history contains itself; looks bad.
+   FIXED
+
+- Laffra found a way to crash it: (new 'mt.skij.Scheme) causes an
+infinite EOF loop. argh.
+
+- idea: extract argument names from the documentation!
+
+- another idea: extract the doc and show it along with the method
+form. This probably requires splitting the current method page
+into an index and another page that has a single form (+ doc)
+
+- skijguts gets an error when it tries to toString *object-vector*,
+because it's a recursive structure!  Kludged around, but a more
+general solution would be nice.
+
+- long arguments (and probably others) aren't handled right. We
+probably need more type codes.
+    FIXED, not fully checked out
+
+
+- locking on class hierarchy page is bad, one (already computed) classfile be locked out
+while computing another.
+
+-more Fry feedback
+- named objects is first, should be good
+- there are all these auto-named objects there, yuck.
+- inspector
+-- names should be more emphasized 
+- empty vectors/lists look ugly (FIXED)
+- [Methods named] button should use substring
+
+- idea: results page recreates the method table + result; makes things
+clearer.
+
+- perhaps quotes in strings should do the right thing
+
+- result page: the inspect fields need a header or something to
+explain them.  "Inspecting blah blah blah"
+
+invoke static methods (and elsewhere): nice if it had a message when
+there were none.
+
+- known instances: headers are confusing.
+
+- Fry hates the result page; having the value rather than the name 
+is confusing. would be great to show both.
+
+- idea: make the code accessible!  Needs pretty-printer tricked out
+with hyperlinks. Each page can have a link to the code that generates
+it.  Can also use the files, maybe it's time to have source
+recording...one problem is macro expansion.
+
+Solution: keep original text when macro is expanded, using some
+special form or another, ie:
+   (begin '(%%macro ...original code...) ...expansion...)
+then make printer know about it.
+
+- get rid of explict pull-params calls, will be much cooler
+  DONE
+
+- protect against *** nothing available **** method calls.
+
+From FRY:
+- general
+-- eliminate redundant headers (home page & elsewhere)
+- home page:
+-- create is hard, so put it lower in the list
+-- the gumby link is surprising, cue people more
+-- the inventory/known objects/named objects stuff is confusing
+-- classpath too
+- put headers on tables (inspect data, etc)
+    DONE, but need to separate out statics for class, etc.
+
+- new popup problems
+-- what to do about real long names (like Frames)
+-- it computes eligibles too much...should cache this.
+-- include named objects
+-- pick a reasonable default object (ie from history)
+
+; todo
+; constructor page needs same doc as invoke page (and invoke static)
+; some errors don't get trapped, like broken pipes, should get logged at least
+; security (Done, needs exercise)
+; generating invoke page is real slow, why?
+;   got a factor of 4 speedup through eliminating quasiquote etc, but need another factor of 4
+; links to documentation from Invoke
+
+;;; more links
+; missing: static methods and fields
+;  no way to make arrays (so can't invoke main methods! sigh)
+; can't do class-spec of java.net.URL because of some horrible netscape bug
+; error doesn't close stream, I can't see why
+; receiver needs to have arg type information. Here's a kludge:
+;      have a one-letter code, ie NSO means 3 args, number, string, object.
+;      DONE, not very clean or extensible
+; Aiee, HERE's an obvious idea: generate links to the API docs!
+;  convert %encoded strings  (see java.net.URLEncoder, which provides one-way service?!??)
+;    DONE, not checked, might have to encode in a few more places
+; check boxes for booleans
+; quoting/unquoting for strings?!?
+; security
+; unique session id so that link highlighting is meaningful
+;  DONE, maybe check it in inspect
+; pop-ups of all suitable objects? 
+;   problem: too many, esp. for params of type Object
+; 
+; New structure
+; == welcome page, give user some more choices
+; == haha msg for security violators
+; table wrapping problems
+

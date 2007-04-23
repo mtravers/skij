@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [en] (Win95; I) [Netscape]">
+   <TITLE>WebSpect Home Page</TITLE>
+</HEAD>
+<BODY>
+
+<H1>
+Welcome to WebSpect</H1>
+You are talking to a remote Java Virtual Machine that is running a WebSpect
+server.. WebSpect allows you to inspect, create, and manipulate the Java
+objects that live in this machine through your web browser.
+<H3>
+<FONT SIZE=+1>Some places to start:</FONT></H3>
+
+<TABLE BORDER COLS=2 WIDTH="100%" >
+<TR>
+<TD>
+<LI>
+See all <A HREF="http://gumby.watson.ibm.com:2341/webspect/named-objects">named
+objects</A>.</LI>
+</TD>
+
+<TD>
+<LI>
+</LI>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<LI>
+Browse the <A HREF="http://gumby.watson.ibm.com:2341/webspect/classpath">CLASSPATH</A>.</LI>
+</TD>
+
+<TD>
+<LI>
+See all <A HREF="http://gumby.watson.ibm.com:2341/webspect/inventory">known
+objects</A>.</LI>
+</TD>
+</TR>
+
+<TR>
+<TD>
+<LI>
+&nbsp;<A HREF="http://gumby.watson.ibm.com:2341/webspect/class-spec">create
+an instance</A> of some class</LI>
+</TD>
+
+<TD>
+<LI>
+See <A HREF="http://gumby.watson.ibm.com:2341/webspect/properties">system
+properties</A>.</LI>
+</TD>
+</TR>
+</TABLE>
+&nbsp;
+<BR>&nbsp;
+<CENTER><TABLE BORDER=4 COLS=1 WIDTH="65%" >
+<TR>
+<TD>
+<CENTER><FONT SIZE=+1>Running in secure mode.</FONT>&nbsp;</CENTER>
+</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+<H3>
+What's going on?</H3>
+The server machine (<A HREF="http://gumby.watson.ibm.com:2341/webspect/inspect?object=0&uid=gumby.watson.ibm.com8902616">gumby.watson.ibm.com/9.2.8.91</A>)
+is running a Java VM, which is running a <A HREF="http://w3,watson.ibm.com/~mt/skij">Skij</A>
+interpreter, which is running the WebSpect server. Skij includes extensions
+to the standard&nbsp; Java Reflection APIs that permit arbitrary interactive
+creation and manipulation of Java objects. Webspect creates a web-based
+interface to this capability. If you don't mind parentheses, you can access
+this capability more directly by running Skij on your own machine. Skij
+can live alongside other Java applications and can be used as a debugging
+and scripting tool.
+<H3>
+What's the point?</H3>
+You may have noticed that there has been revolution in computer interfaces
+that's been going on for a couple of decades now.&nbsp; Beginning&nbsp;
+with Doug Englebart's Augment wor, and continuing on through the Xerox
+Star, Macintosh, and Windows, the thrust bof this revolution has to make
+computational objects appear as graphic objects in the interface and allow
+users to perform operations on them through direct manipulation.
+
+<P>To some extent, this revolution has bypassed programmers, who are most
+in need of it, since they deal with more complex systems of objects than
+most users. Nonetheless, most programmers have very poor access to what's
+going on in their computation. The exceptions have been confined to programming
+environments based on dynamic languages like Smalltalk and Lisp, which
+make reflective tools easy to implement,.
+
+<P>Now comes Java, which has some but not all of the capacity for dynamic
+reflection found in Lisp or Smalltalk. Can tools be built that give Java
+more powerful reflection? Yes, that's what I've been doing. Skij shows
+that the Java reflection API can be extended to allow fully dynamic method
+calling. WebSpect builds on this by providing a graphic interface to this
+capability, albeit not an ideal one. Skij itself constiutes an interface,
+although one that most programmers won't use. Other interfaces are planned.
+<H3>
+Who is responsible?</H3>
+WebSpect and Skij are the creations of <A HREF="http://w3.watson.ibm.com/~mt">Michael
+Travers</A> who works in the <A HREF="http://w3.research.ibm.com/JavaTools/">Java
+Tools Group</A> at the <A HREF="http://w3.watson.ibm.com">IBM T.J Watson
+Research Center</A>. Special thanks to Christopher Fry for feedback and
+encouragement.
+
+<P>
+<HR><A HREF="http://gumby.watson.ibm.com:2341/webspect/home.html">WebSpect
+Home</A>
+<BR>&nbsp;
+<BR>&nbsp;
+</BODY>
+</HTML>

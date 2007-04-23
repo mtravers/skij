@@ -1,0 +1,408 @@
+<clp>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="f">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <or>
+          <and>
+            <fcliteral predicate="f1">
+              <function name="x"/>
+            </fcliteral>
+            <fcliteral predicate="f2">
+              <function name="y"/>
+            </fcliteral>
+          </and>
+          <or>
+            <fcliteral predicate="f3">
+              <function name="x"/>
+            </fcliteral>
+            <fcliteral predicate="f4">
+              <function name="y"/>
+            </fcliteral>
+          </or>
+        </or>
+        <fcliteral predicate="f5">
+          <function name="w"/>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <or>
+        <fcliteral predicate="stupid">
+          <function name="x"/>
+        </fcliteral>
+        <fcliteral predicate="rich" fneg="yes">
+          <variable name="?x"/>
+        </fcliteral>
+      </or>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <or>
+        <and>
+          <fcliteral predicate="stupid">
+            <function name="x" string="yes"/>
+          </fcliteral>
+          <fcliteral predicate="rich" fneg="yes">
+            <variable name="?x"/>
+          </fcliteral>
+        </and>
+        <fcliteral predicate="goodluck"/>
+        <fcliteral predicate="god"/>
+      </or>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <or>
+          <fcliteral predicate="stupid">
+            <function name="x" string="yes"/>
+          </fcliteral>
+          <fcliteral predicate="rich" fneg="yes">
+            <variable name="?x"/>
+          </fcliteral>
+        </or>
+        <and>
+          <fcliteral predicate="goodluck"/>
+          <fcliteral predicate="badluck"/>
+        </and>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <and>
+        <cliteral predicate="A"/>
+        <cliteral predicate="B"/>
+        <cliteral predicate="C" cneg="yes"/>
+      </and>
+    </head>
+    <body>
+      <or>
+        <and>
+          <or>
+            <or>
+              <fcliteral predicate="a"/>
+              <fcliteral predicate="b"/>
+            </or>
+            <and>
+              <fcliteral predicate="c"/>
+              <fcliteral predicate="d"/>
+            </and>
+          </or>
+          <or>
+            <fcliteral predicate="e"/>
+            <fcliteral predicate="f"/>
+          </or>
+        </and>
+        <fcliteral predicate="h"/>
+      </or>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="fff" cneg="yes">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="ffg">
+        <function name="x"/>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="f">
+        <function name="x"/>
+        <function name="y"/>
+      </cliteral>
+    </head>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="f">
+        <function name="x"/>
+        <variable name="?y"/>
+      </cliteral>
+    </head>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="g">
+        <function name="x"/>
+        <variable name="?y"/>
+      </cliteral>
+    </head>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="large">
+        <function name="x"/>
+        <variable name="?y"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="heavy"/>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="medium">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="size">
+        <function name="larger">
+          <variable name="?x"/>
+          <variable name="?f"/>
+        </function>
+        <function name="heavier">
+          <variable name="?x"/>
+          <variable name="?f"/>
+        </function>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="small">
+        <function name="e"/>
+        <variable name="?f"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="light"/>
+    </body>
+  </erule>
+  <erule rulelabel="lab1">
+    <head>
+      <cliteral predicate="bull">
+        <function name="123"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="pig">
+        <variable name="?y"/>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="23">
+    <head>
+      <cliteral predicate="bird">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="fly">
+        <variable name="?x"/>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="respectful">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="education">
+          <function name="degree">
+            <function name="school">
+              <variable name="?m"/>
+              <function name="USA"/>
+            </function>
+            <function name="major">
+              <variable name="?s"/>
+              <variable name="?y"/>
+            </function>
+          </function>
+        </fcliteral>
+        <fcliteral predicate="wealth">
+          <function name="networth">
+            <function name="stock">
+              <variable name="?shares"/>
+              <variable name="?company"/>
+            </function>
+            <function name="bond">
+              <variable name="?yield"/>
+              <variable name="?amount"/>
+            </function>
+            <variable name="?cash"/>
+          </function>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="tall">
+          <variable name="?x"/>
+        </fcliteral>
+        <fcliteral predicate="big">
+          <variable name="?y"/>
+        </fcliteral>
+        <fcliteral predicate="123"/>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good" cneg="yes">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="stupid">
+          <function name="x"/>
+        </fcliteral>
+        <fcliteral predicate="rich" fneg="yes">
+          <variable name="?x"/>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="bad" cneg="yes">
+        <variable name="?y"/>
+        <function name="x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="smart">
+          <variable name="?x"/>
+        </fcliteral>
+        <fcliteral predicate="rich" cneg="yes">
+          <variable name="?x"/>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="lab1">
+    <head>
+      <cliteral predicate="bull">
+        <function name="123"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="pig">
+        <variable name="?y"/>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="23">
+    <head>
+      <cliteral predicate="bird">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <fcliteral predicate="fly">
+        <variable name="?x"/>
+      </fcliteral>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="tall">
+          <variable name="?x"/>
+        </fcliteral>
+        <fcliteral predicate="big">
+          <variable name="?y"/>
+        </fcliteral>
+        <fcliteral predicate="123"/>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="good" cneg="yes">
+        <variable name="?x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="stupid">
+          <function name="x"/>
+        </fcliteral>
+        <fcliteral predicate="rich" fneg="yes">
+          <variable name="?x"/>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <erule rulelabel="emptyLabel">
+    <head>
+      <cliteral predicate="bad" cneg="yes">
+        <variable name="?y"/>
+        <function name="x"/>
+      </cliteral>
+    </head>
+    <body>
+      <and>
+        <fcliteral predicate="smart">
+          <variable name="?x"/>
+        </fcliteral>
+        <fcliteral predicate="rich" cneg="yes">
+          <variable name="?x"/>
+        </fcliteral>
+      </and>
+    </body>
+  </erule>
+  <mutex>
+    <cliteral predicate="ff1">
+      <function name="x"/>
+    </cliteral>
+    <cliteral predicate="gg">
+      <function name="y"/>
+      <function name="ftt1">
+        <function name="xx"/>
+        <function name="3"/>
+      </function>
+      <function name="ftt2">
+        <function name="a"/>
+        <variable name="?b"/>
+      </function>
+    </cliteral>
+  </mutex>
+</clp>

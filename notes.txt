@@ -1,0 +1,5 @@
+Revived again 22 April 07
+
+Hey, graph inspect works!  Except nowadays I ought to use prefuse.
+
+Actually I should punt skij altogether for somethign else.
