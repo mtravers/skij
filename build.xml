@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="skij" default="all" basedir=".">
+	<property name="name" value="skij"/>
+    <property name="root.dir" value="./"/>
+    <property name="build.src" value="${root.dir}/src"/>
+    <property name="build.dest" value="${root.dir}/classes"/>	
+	<property name="build.src.skij" value="${root.dir}/src/com/ibm/jikes/skij"/>
+    <property name="debug" value="off"/>
+    <property name="optimize" value="on"/>
+    <property name="deprecation" value="on"/>
+
+  <target name="compile">
+	    <javac srcdir="${build.src}"
+	           destdir="${build.dest}"
+	           debug="${debug}"
+	           deprecation="${deprecation}"
+	           optimize="${optimize}"/>
+	  </target>
+	
+	<target name="libcopy">
+		<copy todir="${build.dest}/lib">
+			<fileset dir = "${build.src.skij}/lib" includes="*.scm"/>
+			</copy>
+		</target>
+		
+		
+	  <target name="jar" depends="compile, libcopy">
+	    <jar jarfile="${root.dir}/${name}.jar"
+	         basedir="${build.dest}"
+	         includes="**"/>
+	  	<jar jarfile="${root.dir}/${name}.src.jar"
+	  		 basedir="${build.src}"
+	  		 includes="**"/>
+	  </target>
+		
+	  <target name="all" depends="jar"/>
+	
+	
+</project> 
