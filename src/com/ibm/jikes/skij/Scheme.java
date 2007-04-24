@@ -193,8 +193,13 @@ public class Scheme {
    * Inspect an object.
    */
   public static void inspect(Object thing) {
-    initLibraries();
-    Scheme.procedure("inspect").safeApply(Cons.list(thing));
+	    initLibraries();
+	    Scheme.procedure("inspect").safeApply(Cons.list(thing));
+  }
+
+  public static void graphInspect(Object thing) {
+	    initLibraries();
+	    Scheme.procedure("graph-inspect").safeApply(Cons.list(thing));
   }
 
   /** 
@@ -255,10 +260,11 @@ public class Scheme {
     new SchemeListener(url.openStream()).repl();
   }
 
-public static void setSymbol(String symbolname, Object val) {
+  	// Some special purpose entry points
+   public static void setSymbol(String symbolname, Object val) {
 	TopEnvironment.addTopBinding(Symbol.intern(symbolname), val);
-	
-}
+   }
+   
   
 }
 
