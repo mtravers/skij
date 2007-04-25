@@ -140,8 +140,6 @@
 	  (invoke table 'addMouseListener
 		  (new 'com.ibm.jikes.skij.misc.GenericCallback
 		       (lambda (evt)
-			 (if (= (invoke evt 'getClickCount) 2)
-			     (print evt))
 			 (if (and (= (invoke evt 'getID)
 				     mouse-pressed-event-id)
 				  (= (invoke evt 'getClickCount) 2))
