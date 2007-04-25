@@ -12,6 +12,8 @@
 	<property name="namespace" value="com/ibm/jikes/skij"/>
 	<property name="build.src.skij" value="${build.src}/${namespace}"/>
 	<property name="build.dest.skij" value="${build.dest}/${namespace}"/>
+	<property name="build.jar" value="${root.dir}/${name}.jar"/>	
+		
     <property name="debug" value="off"/>
     <property name="optimize" value="on"/>
     <property name="deprecation" value="on"/>
@@ -37,13 +39,22 @@
 		
 		
 	  <target name="jar" depends="compile, libcopy">
-	    <jar jarfile="${root.dir}/${name}.jar"
+	    <jar jarfile="${build.jar}"
 	         basedir="${build.dest}"
 	         includes="**"/>
 	  	<jar jarfile="${root.dir}/${name}.src.jar"
 	  		 basedir="${build.src}"
 	  		 includes="**"/>
 	  </target>
+	
+	<!-- horrible security hole, but I don't care at the moment. See ant doc for a better way via a .properties file -->
+	<!-- well, it doesn't work anyway, so forget it -->
+	<target name="dist" depends="clean, jar">
+		<scp file="${build.jar}"
+			todir="mt_hyperphor@ssh.phx.nearlyfreespeech.net:dist/skij.jar" password="pass"/>
+		</target>
+
+
 		
 	  <target name="all" depends="jar"/>
 	

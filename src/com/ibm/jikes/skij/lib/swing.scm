@@ -32,7 +32,7 @@
   (define content-pane (invoke w 'getContentPane))
   (invoke content-pane 'add panel)
   (invoke w 'pack)
-  (invoke w 'show)
+;  (invoke w 'show)
   w)
 
 (define (make-swing-button name action)

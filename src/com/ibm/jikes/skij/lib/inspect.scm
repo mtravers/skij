@@ -17,10 +17,8 @@
 ; empty array gets error(?)
 ; refresh button, edit options
 ;   autorefresh (with thread)
-; would be nice if we didn't need button
 ; clicking on the left-hand column should maybe get the method object, or at least show what class it comes from
 ; diddle table: no column selection, handle or disallow multiple row selection
-; set position of window before making visible?
 
 (define *jive-mode* #f)			;set to t for Jive inspector
 
@@ -75,6 +73,9 @@
 (define window-closing-event-id
   (peek-static 'java.awt.event.WindowEvent 'WINDOW_CLOSING))
 
+(define mouse-pressed-event-id
+  (peek-static 'java.awt.event.MouseEvent 'MOUSE_PRESSED))
+
 ;;; used only for positioning new windows
 (define inspect-top-window #f)
 
@@ -103,10 +104,13 @@
     (invoke layout 'setConstraints comp constraints)
     (invoke panel 'add comp))
 
+  (define (jump-selected)
+    (let ((item (selected-item table)))
+      (jump obj (car item) (cadr item))))    
+
   (add-component
    (make-swing-button "Inspect" (lambda (evt)
-				  (let ((item (selected-item table)))
-				    (jump obj (car item) (cadr item))))))
+				  (jump-selected))))
 
   (add-component
    (make-swing-button "Refresh" (lambda (evt)
@@ -132,6 +136,16 @@
 
 	  (define data (adapt-inspect-data (inspect-data obj)))
 	  (set! table (make-table (cdr data) (car data)))
+
+	  (invoke table 'addMouseListener
+		  (new 'com.ibm.jikes.skij.misc.GenericCallback
+		       (lambda (evt)
+			 (if (= (invoke evt 'getClickCount) 2)
+			     (print evt))
+			 (if (and (= (invoke evt 'getID)
+				     mouse-pressed-event-id)
+				  (= (invoke evt 'getClickCount) 2))
+			     (jump-selected)))))
 
 	  (set! table-panel (make-table-panel table 350 200))
 	  (add-component table-panel)))
@@ -164,6 +178,7 @@
 		(invoke newloc 'translate 22 22)
 		newloc)))
 
+  (invoke window 'show)
   window)
 
 (define (jump from-obj link to-obj)
