@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- To add:
+   lib -> java -> classes
+   cleaning directories
+   lib still not working...
+-->
 <project name="skij" default="all" basedir=".">
 	<property name="name" value="skij"/>
     <property name="root.dir" value="./"/>
     <property name="build.src" value="${root.dir}/src"/>
     <property name="build.dest" value="${root.dir}/classes"/>	
-	<property name="build.src.skij" value="${root.dir}/src/com/ibm/jikes/skij"/>
+	<property name="namespace" value="com/ibm/jikes/skij"/>
+	<property name="build.src.skij" value="${build.src}/${namespace}"/>
+	<property name="build.dest.skij" value="${build.dest}/${namespace}"/>
     <property name="debug" value="off"/>
     <property name="optimize" value="on"/>
     <property name="deprecation" value="on"/>
 
-  <target name="compile">
+<target name="clean">
+	<mkdir dir="${build.dest}"/>
+</target>
+	
+	<target name="compile">
 	    <javac srcdir="${build.src}"
 	           destdir="${build.dest}"
 	           debug="${debug}"
@@ -18,9 +29,10 @@
 	  </target>
 	
 	<target name="libcopy">
-		<copy todir="${build.dest}/lib">
-			<fileset dir = "${build.src.skij}/lib" includes="*.scm"/>
-			</copy>
+		<echo message="Copying from ${build.src.skij}/lib to ${build.dest.skij}/lib"/>
+		<copy todir="${build.dest.skij}/lib">
+			<fileset dir="${build.src.skij}/lib" includes="*.scm"/>
+		</copy>
 		</target>
 		
 		
