@@ -1,5 +1,6 @@
-Reassembling skij. Why?
+Reassembling skij. 
 
-ARGH, there is a somewhat more uptodate set of sources in hyperphor-www/skij-project!!!! 
+Hopefully this is now the definitive version.
 
-FUCK SHIT DAMN 
+Includes an Eclipse .project file and ant build file, for extra-crispy goodness.
+Note that the jar file is included for convenience.
