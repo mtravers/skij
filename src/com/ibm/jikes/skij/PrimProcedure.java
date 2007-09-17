@@ -506,7 +506,8 @@ public abstract class PrimProcedure extends Procedure {
        }} ;
 
      new PrimProcedure("%instanceof") {
-       public Object apply(Environment env, Cons args) throws SchemeException {
+       @SuppressWarnings("unchecked")
+	public Object apply(Environment env, Cons args) throws SchemeException {
 	 Class klass = (Class)args.cadr();
 	 return this.boxedBoolean(klass.isInstance(args.car));
        }} ;
