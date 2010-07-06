@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- To add:
-   lib -> java -> classes
-   cleaning directories
-   lib still not working...
+lib -> java -> classes
+cleaning directories
+lib still not working...
 -->
 <project name="skij" default="all" basedir=".">
-	<property name="name" value="skij"/>
-    <property name="root.dir" value="./"/>
-    <property name="build.src" value="${root.dir}/src"/>
-    <property name="build.dest" value="${root.dir}/classes"/>	
-	<property name="namespace" value="com/ibm/jikes/skij"/>
-	<property name="build.src.skij" value="${build.src}/${namespace}"/>
-	<property name="build.dest.skij" value="${build.dest}/${namespace}"/>
-	<property name="build.jar" value="${root.dir}/${name}.jar"/>	
-		
-    <property name="debug" value="off"/>
-    <property name="optimize" value="on"/>
-    <property name="deprecation" value="on"/>
+  <property name="name" value="skij"/>
+  <property name="root.dir" value="./"/>
+  <property name="build.src" value="${root.dir}/src"/>
+  <property name="build.dest" value="${root.dir}/classes"/>	
+  <property name="namespace" value="com/ibm/jikes/skij"/>
+  <property name="build.src.skij" value="${build.src}/${namespace}"/>
+  <property name="build.dest.skij" value="${build.dest}/${namespace}"/>
+  <property name="build.jar" value="${root.dir}/${name}.jar"/>	
+  
+  <property name="debug" value="off"/>
+  <property name="optimize" value="on"/>
+  <property name="deprecation" value="on"/>
 
-<target name="clean">
-	<mkdir dir="${build.dest}"/>
-</target>
-	
-	<target name="compile">
-	    <javac srcdir="${build.src}"
-	           destdir="${build.dest}"
-	           debug="${debug}"
-	           deprecation="${deprecation}"
-	           optimize="${optimize}"/>
-	  </target>
-	
-	<target name="libcopy">
-		<echo message="Copying from ${build.src.skij}/lib to ${build.dest.skij}/lib"/>
-		<copy todir="${build.dest.skij}/lib">
-			<fileset dir="${build.src.skij}/lib" includes="*.scm"/>
-		</copy>
-		</target>
-		
-		
-	  <target name="jar" depends="compile, libcopy">
-	    <jar jarfile="${build.jar}"
-	         basedir="${build.dest}"
-	         includes="**"/>
-	  	<jar jarfile="${root.dir}/${name}.src.jar"
-	  		 basedir="${build.src}"
-	  		 includes="**"/>
-	  </target>
-	
-	<!-- horrible security hole, but I don't care at the moment. See ant doc for a better way via a .properties file -->
-	<!-- well, it doesn't work anyway, so forget it -->
-	<target name="dist" depends="clean, jar">
-		<scp file="${build.jar}"
-			todir="mt_hyperphor@ssh.phx.nearlyfreespeech.net:dist/skij.jar" password="pass"/>
-		</target>
+  <target name="clean">
+    <mkdir dir="${build.dest}"/>
+  </target>
+  
+  <target name="compile">
+    <javac srcdir="${build.src}"
+	   destdir="${build.dest}"
+	   debug="${debug}"
+	   deprecation="${deprecation}"
+	   optimize="${optimize}"/>
+  </target>
+  
+  <target name="libcopy">
+    <echo message="Copying from ${build.src.skij}/lib to ${build.dest.skij}/lib"/>
+    <copy todir="${build.dest.skij}/lib">
+      <fileset dir="${build.src.skij}/lib" includes="*.scm"/>
+    </copy>
+  </target>
+  
+  
+  <target name="jar" depends="compile, libcopy">
+    <jar jarfile="${build.jar}"
+	 basedir="${build.dest}"
+	 includes="**">
+      <manifest>
+	<attribute name="Main-Class" value="com.ibm.jikes.skij.Scheme" />
+      </manifest>
+    </jar>
+    <jar jarfile="${root.dir}/${name}.src.jar"
+	 basedir="${build.src}"
+	 includes="**"/>
+  </target>
+  
+  <!-- horrible security hole, but I don't care at the moment. See ant doc for a better way via a .properties file -->
+  <!-- well, it doesn't work anyway, so forget it -->
+  <target name="dist" depends="clean, jar">
+    <scp file="${build.jar}"
+	 todir="mt_hyperphor@ssh.phx.nearlyfreespeech.net:dist/skij.jar" password="pass"/>
+  </target>
 
 
-		
-	  <target name="all" depends="jar"/>
-	
-	
+  
+  <target name="all" depends="jar"/>
+  
+  
 </project> 
