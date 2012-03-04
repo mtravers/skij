@@ -1,9 +1,0 @@
-Revived again 22 April 07
-
-Hey, graph inspect works!  Except nowadays I ought to use prefuse.
-
-Actually I should punt skij altogether for somethign else.
-
-24 April
-
-released to Alan, put in some improvements for him.

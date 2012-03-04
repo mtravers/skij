@@ -1,6 +1,10 @@
-Reassembling skij. 
+Skij is a fairly ancient Java-based Scheme interpreter, developed at IBM in 1997/1998. Included here on Github mostly for historic and didactic purposes -- there are much better choices for Lisp-like languages and interpreted languages on the JVM these days.
 
-Hopefully this is now the definitive version.
+Home page and documentation:
+http://xenia.media.mit.edu/~mt/skij/skijdoc.html
 
-Includes an Eclipse .project file and ant build file, for extra-crispy goodness.
-Note that the jar file is included for convenience.
+An article explaining the rationale for interpreted language within Java:
+http://xenia.media.mit.edu/~mt/skij/dynjava/dynjava.html
+
+Mike Travers
+mt@hyperphor.com
