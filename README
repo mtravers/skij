@@ -1,5 +1,8 @@
 Skij is a fairly ancient Java-based Scheme interpreter, developed at IBM in 1997/1998. Included here on Github mostly for historic and didactic purposes -- there are much better choices for Lisp-like languages and interpreted languages on the JVM these days.
 
+To start:
+> java -classpath skij.jar com.ibm.jikes.skij.Scheme
+
 Home page and documentation:
 http://xenia.media.mit.edu/~mt/skij/skijdoc.html
 
