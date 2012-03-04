@@ -1,4 +1,4 @@
-rProblems with Skij on .NET
+Problems with Skij on .NET
 
 - getGraphics returns an object that can't be accessed through reflection, which breaks
 anything that does drawing.
